@@ -2,11 +2,12 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const Todo = require("./models/Todo");
+const dotenv = require("dotenv").config();
 
-mongoose.connect(
-  "mongodb+srv://ypicaud:ypicaud@cluster0.2f4qr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true }
-);
+mongoose.connect(process.env.MONGODB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 mongoose.connection.once("open", () => {
   console.log("Mongodb connection established successfully");
